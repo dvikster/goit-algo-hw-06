@@ -67,12 +67,9 @@ city_positions = {
 }
 
 
-plt.figure(figsize=(10, 7))
-
 # Малюємо граф із географічно коректним розташуванням міст
-nx.draw(G, city_positions, with_labels=True, node_color='lightblue', node_size=2000, edge_color='gray', font_size=10)
-edge_labels = {(u, v): f"{d['weight']} км" for u, v, d in G.edges(data=True)}
-nx.draw_networkx_edge_labels(G, city_positions, edge_labels=edge_labels, font_size=8)
-
-plt.title("Граф транспортної мережі України (з вагами)")
+plt.figure(figsize=(10, 7))
+ax = plt.gca()  # отримуємо поточні осі
+nx.draw(G, city_positions, with_labels=True, node_color='lightblue', node_size=2000, edge_color='gray', font_size=10, ax=ax)
+ax.set_title("Граф транспортної мережі України")
 plt.show()
